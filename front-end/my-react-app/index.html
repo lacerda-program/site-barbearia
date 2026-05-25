@@ -1,13 +1,88 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-react-app</title>
+    
+    <!-- SEO & Metadata -->
+    <title>WE Barber | Barbearia Premium</title>
+    <meta name="description" content="WE Barber - Em desenvolvimento. Em breve, um novo padrão de excelência em barbearia." />
+    
+    <!-- Google Fonts: Playfair Display for classic, premium serif headings, and Inter for clean body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    
+    <!-- Theme & Favicon -->
+    <meta name="theme-color" content="#0a1a15" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂️</text></svg>" />
+
+    <!-- Style Sheet Link -->
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Main Container -->
+    <div class="app-container">
+      
+      <!-- Top Header / Logo -->
+      <header class="header">
+        <div class="logo-container">
+          <div class="logo-text">WE BARBER</div>
+          <div class="logo-subtitle">BARBEARIA PREMIUM</div>
+          <div class="gold-divider"></div>
+        </div>
+      </header>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        
+        <!-- Showcase Image Section (First, or Side-by-Side) -->
+        <div class="content-grid">
+          
+          <!-- Image Column with classic gold frame -->
+          <div class="image-wrapper">
+            <img src="/interior.png" alt="Interior da Barbearia WE Barber" class="barbershop-img" />
+          </div>
+
+          <!-- Text Information Column -->
+          <div class="info-card">
+            <h1 class="main-title">Estamos em Desenvolvimento</h1>
+            
+            <div class="quote-divider">
+              <span class="scissor-symbol">✂</span>
+            </div>
+
+            <p class="inspiring-message-pt">
+              Em breve, um novo padrão de excelência em barbearia premium.
+            </p>
+
+            <!-- Instagram CTA Button -->
+            <div class="cta-container">
+              <a href="https://www.instagram.com/webarbearia._/" target="_blank" rel="noopener noreferrer" class="instagram-btn">
+                <svg class="instagram-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+                <span>ACOMPANHE NO INSTAGRAM</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+
+      <!-- Footer Info -->
+      <footer class="footer">
+        <div class="footer-line"></div>
+        <p>&copy; 2026 WE Barber. Todos os direitos reservados.</p>
+        <p class="footer-tagline">Um novo conceito em estética masculina premium</p>
+      </footer>
+
+    </div>
+
+    <!-- Script Link -->
+    <script type="module" src="./index.ts"></script>
   </body>
 </html>

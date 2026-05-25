@@ -1,0 +1,316 @@
+/* ==========================================
+   WE BARBER - CLASSIC PREMIUM STYLING
+   ========================================== */
+
+:root {
+  /* Elegant Color Palette */
+  --bg-dark-green: #0a1813;
+  --bg-black: #060908;
+  --bg-card: #0c1411;
+  
+  --gold-primary: #d4af37;
+  --gold-light: #f3df9b;
+  --gold-dark: #aa8622;
+  
+  --text-white: #ffffff;
+  --text-muted: #9bb0a6;
+  --text-dark-muted: #576d63;
+  
+  /* Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', sans-serif;
+  
+  /* Layout Tokens */
+  --border-gold: 1px solid var(--gold-primary);
+  --border-gold-soft: 1px solid rgba(212, 175, 55, 0.25);
+  --border-green: 1px solid rgba(155, 176, 166, 0.12);
+  --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  --border-radius: 4px; /* Classic sharp, subtle radius */
+}
+
+/* ==========================================
+   CORE RESET & TYPOGRAPHY
+   ========================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-black);
+  color: var(--text-white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+body {
+  /* Rich, static dark green to black gradient */
+  background: linear-gradient(180deg, var(--bg-dark-green) 0%, var(--bg-black) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
+/* ==========================================
+   HEADER / LOGO
+   ========================================== */
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.logo-text {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-white);
+}
+
+.logo-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  color: var(--gold-primary);
+  margin-top: 0.2rem;
+}
+
+.gold-divider {
+  width: 40px;
+  height: 1.5px;
+  background-color: var(--gold-primary);
+  margin-top: 0.8rem;
+}
+
+/* ==========================================
+   CONTENT / GRID
+   ========================================== */
+
+.main-content {
+  width: 100%;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Image Column - Classic Framed look */
+.image-wrapper {
+  position: relative;
+  border: var(--border-gold);
+  padding: 8px; /* Internal frame spacing */
+  background-color: rgba(6, 9, 8, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+}
+
+.barbershop-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: saturate(0.85) contrast(1.02);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Text Column */
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.main-title {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-white);
+}
+
+.quote-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--gold-primary);
+  font-size: 0.9rem;
+}
+
+.quote-divider::before,
+.quote-divider::after {
+  content: '';
+  height: 1px;
+  flex-grow: 1;
+  background-color: rgba(212, 175, 55, 0.25);
+}
+
+.scissor-symbol {
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  transform: rotate(-45deg);
+}
+
+.inspiring-message {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--gold-light);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.inspiring-message-pt {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Instagram Button */
+.cta-container {
+  margin-top: 0.8rem;
+}
+
+.instagram-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background-color: transparent;
+  border: var(--border-gold);
+  border-radius: var(--border-radius);
+  padding: 0.9rem 1.8rem;
+  color: var(--text-white);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.instagram-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--gold-primary);
+  transition: var(--transition-smooth);
+}
+
+.instagram-btn:hover {
+  background-color: var(--gold-primary);
+  color: var(--bg-black);
+}
+
+.instagram-btn:hover .instagram-icon {
+  color: var(--bg-black);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-dark-muted);
+}
+
+.footer-line {
+  width: 60px;
+  height: 1px;
+  background-color: rgba(155, 176, 166, 0.1);
+  margin-bottom: 1.2rem;
+}
+
+.footer-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--gold-primary);
+  opacity: 0.8;
+  margin-top: 0.1rem;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 800px) {
+  .app-container {
+    padding: 3rem 1.5rem;
+    gap: 3rem;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .image-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .info-card {
+    text-align: center;
+    align-items: center;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .inspiring-message {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 1.8rem;
+  }
+
+  .main-title {
+    font-size: 1.7rem;
+  }
+
+  .instagram-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
