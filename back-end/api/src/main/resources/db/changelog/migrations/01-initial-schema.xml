@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- Changeset 1: Create tb_users -->
+    <changeSet id="1" author="barber-dev">
+        <createTable tableName="tb_users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="VARCHAR(20)"/>
+            <column name="role" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Changeset 2: Create tb_barbers -->
+    <changeSet id="2" author="barber-dev">
+        <createTable tableName="tb_barbers">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints unique="true"/>
+            </column>
+            <column name="phone" type="VARCHAR(20)"/>
+            <column name="bio" type="TEXT"/>
+            <column name="avatar_url" type="VARCHAR(255)"/>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Changeset 3: Create tb_services -->
+    <changeSet id="3" author="barber-dev">
+        <createTable tableName="tb_services">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="price" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="promotional_price" type="DECIMAL(10,2)"/>
+            <column name="duration_minutes" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Changeset 4: Create tb_bookings -->
+    <changeSet id="4" author="barber-dev">
+        <createTable tableName="tb_bookings">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="customer_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_email" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_phone" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_user_id" type="BIGINT"/>
+            <column name="barber_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="service_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="booking_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="TEXT"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="tb_bookings" baseColumnNames="customer_user_id"
+                                 constraintName="fk_bookings_users" referencedTableName="tb_users"
+                                 referencedColumnNames="id" onDelete="SET NULL"/>
+
+        <addForeignKeyConstraint baseTableName="tb_bookings" baseColumnNames="barber_id"
+                                 constraintName="fk_bookings_barbers" referencedTableName="tb_barbers"
+                                 referencedColumnNames="id" onDelete="RESTRICT"/>
+
+        <addForeignKeyConstraint baseTableName="tb_bookings" baseColumnNames="service_id"
+                                 constraintName="fk_bookings_services" referencedTableName="tb_services"
+                                 referencedColumnNames="id" onDelete="RESTRICT"/>
+    </changeSet>
+
+    <!-- Changeset 5: Seed initial data -->
+    <changeSet id="5" author="barber-dev">
+        <!-- 1. Default Admin: email 'admin@webarber.com', password 'admin123' (BCrypt hash) -->
+        <insert tableName="tb_users">
+            <column name="name" value="Admin WE Barber"/>
+            <column name="email" value="admin@webarber.com"/>
+            <column name="password" value="$2a$10$fVq9b8kI6006gCOW6UfGReT1nO.tPjI80D7lE1mP78w8qC6n/rC96"/>
+            <column name="phone" value="(11) 99999-9999"/>
+            <column name="role" value="ADMIN"/>
+        </insert>
+
+        <!-- 2. Seed Barbers -->
+        <insert tableName="tb_barbers">
+            <column name="name" value="Enzo Silva"/>
+            <column name="email" value="enzo@webarber.com"/>
+            <column name="phone" value="(11) 98888-8881"/>
+            <column name="bio" value="Especialista em degradê moderno, cortes clássicos e visagismo masculino com mais de 8 anos de experiência."/>
+            <column name="avatar_url" value="/assets/barber-enzo.png"/>
+            <column name="active" valueBoolean="true"/>
+        </insert>
+        <insert tableName="tb_barbers">
+            <column name="name" value="Mateus Santos"/>
+            <column name="email" value="mateus@webarber.com"/>
+            <column name="phone" value="(11) 98888-8882"/>
+            <column name="bio" value="Mestre em terapia capilar, barba clássica com toalha quente e tratamentos de alta performance."/>
+            <column name="avatar_url" value="/assets/barber-mateus.png"/>
+            <column name="active" valueBoolean="true"/>
+        </insert>
+
+        <!-- 3. Seed Services -->
+        <insert tableName="tb_services">
+            <column name="name" value="Corte Premium (Visagismo)"/>
+            <column name="description" value="Corte personalizado utilizando técnicas modernas de visagismo para valorizar suas linhas faciais, com direito a lavagem com shampoo premium e finalização personalizada."/>
+            <column name="price" valueNumeric="70.00"/>
+            <column name="promotional_price" valueNumeric="60.00"/>
+            <column name="duration_minutes" valueNumeric="45"/>
+            <column name="active" valueBoolean="true"/>
+        </insert>
+        <insert tableName="tb_services">
+            <column name="name" value="Barba Premium (Terapia e Toalha Quente)"/>
+            <column name="description" value="Design de barba executado com navalha de alta precisão, toalha quente com aromaterapia e massagem com óleos essenciais hidratantes."/>
+            <column name="price" valueNumeric="50.00"/>
+            <column name="promotional_price" valueNumeric="45.00"/>
+            <column name="duration_minutes" valueNumeric="30"/>
+            <column name="active" valueBoolean="true"/>
+        </insert>
+        <insert tableName="tb_services">
+            <column name="name" value="Combo Imperial (Corte + Barba)"/>
+            <column name="description" value="Experiência completa combinando nosso Corte Premium e Barba Imperial com desconto especial."/>
+            <column name="price" valueNumeric="110.00"/>
+            <column name="promotional_price" valueNumeric="95.00"/>
+            <column name="duration_minutes" valueNumeric="75"/>
+            <column name="active" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
